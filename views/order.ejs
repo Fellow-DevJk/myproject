@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+        <title>Just Cafe</title>
+        <link rel='stylesheet' type="text/css" href="style.css" />
+        <meta name="viewport" content="width = device-width, initial-scale=1">
+        <style type="text/css">
+        body {
+          background-image: url('wp3478887.webp');
+          background-attachment: fixed;
+          background-size: 100%;
+          }
+        input {
+          font-size: 20px;
+          text-align:left;
+          box-sizing:border-box;
+          margin-top:10px;
+          margin-bottom:10px;
+          margin-left:20px;
+          color: rgba(86, 74, 67, 0.8);
+          border: none;
+          }
+
+        label {
+          font-size: 26px;
+          text-align:left;
+          box-sizing:border-box;
+          margin-top:10px;
+          margin-bottom:10px;
+          margin-left:20px;
+          color: rgba(86, 74, 67, 0.8);
+          border: none;
+          }
+
+        select {
+          font-size: 20px;
+          text-align:left;
+          box-sizing:border-box;
+          margin-top:10px;
+          margin-bottom:10px;
+          margin-left:20px;
+          color: rgba(86, 74, 67, 0.8);
+          border: none;
+          width: 30%;
+          }
+
+          ::placeholder {
+            font-size: 20px;
+            text-align:left;
+            box-sizing:border-box;
+            margin-top:10px;
+            margin-bottom:10px;
+            margin-left:20px;
+            color: rgba(86, 74, 67, 0.5);
+            }
+
+        </style>
+    </head>
+    <body>
+
+
+<!-- header section -->
+        <div id='top'>
+					<div class='ss-text' >
+							<a id="title" href="index.html" style="text-decoration: none;">Just Cafe</a>
+					</div>
+						<a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="about.html">About Us</a>
+						<a style="
+						background-color: rgba(255, 255, 255, 0.5);
+					  text-align: center;
+					  text-decoration: none;
+					  display: inline-block;
+						"href="order.html">Order</a>
+        </div>
+
+
+<!-- line break -->
+
+<hr hr size="6px" width="90%" color=#ED7117>
+
+      <div id='about-us' >
+        <div class="order-form" >
+              <form action="#">
+                  <!-- Information -->
+                  <strong>Information:</strong><br/><br/>
+                  <label for="name">Name for the order:</label>
+                  <input type="text" id="name" placeholder="Name" required><br><br/>
+                  <label for="phone">Phone Number:</label>
+                  <input type="tel" id="phone" name="phone"
+                  pattern="[0-9]{10}"
+                  placeholder="Eg: 9174XXXXXX" required><br/><br/>
+                  <label for="order_option">Pickup or Delivery:</label>
+                  <select name="order_option" id="order_option" required>
+                      <option value="pickup">Pickup</option>
+                      <option value="delivery">Delivery</option>
+                  </select><br/><br/>
+                  <label for="address">Address:</label>
+                  <input type="text" id="address" placeholder="Address" required>
+                  <br><br><br/>
+                  <!-- Drinks -->
+                  <strong>Drinks:</strong><br/>
+                  <label for="drink1">Cafe Latte
+                    :</label>
+                  <input type="checkbox" id="drink1" name="drink1"
+                  value="coffee" style="width:20px; height:20px;">
+                  <select name="drink1" id="drink1">
+                      <option value="size">large cup</option>
+                      <option value="size">small cup</option>
+                  </select>
+                  <input type="number" id="drink1" value="0">
+                  <br/><br/>
+                  <label for="drink2">Black Tea:</label>
+                  <input type="checkbox" id="drink2" name="drink2"
+                  value="black_tea" style="width:20px; height:20px;">
+                  <select name="drink2" id="drink2">
+                      <option value="hot">Hot</option>
+                      <option value="iced">Iced</option>
+                  </select>
+                  <input type="number" id="drink2" value="0">
+                  <br/><br/>
+                  <label for="drink3">Mint Mojito:</label>
+                  <input type="checkbox" id="drink3" name="drink3"
+                  value="chai_tea" style="width:20px; height:20px;">
+                  <select name="drink3" id="drink3">
+                      <option value="size">Large Glass</option>
+                      <option value="size">Smal Glass</option>
+                  </select>
+                  <input type="number" id="drink3" value="0">
+                  <br/><br/>
+                  <label for="drink4">Shake:</label>
+                  <input type="checkbox" id="drink4" name="drink4"
+                  value="espresso" style="width:20px; height:20px;">
+                  <select name="drink4" id="drink4">
+                      <option value="Flavour">Mango</option>
+                      <option value="Flavour">chocolate</option>
+                      <option value="Flavour">strawberry</option>
+                      <option value="Flavour">vanilla</option>
+                      <option value="Flavour">butterscotch</option>
+                  </select>
+                  <input type="number" id="drink4" value="0">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <!-- Breakfast -->
+                  <strong>Breakfast:</strong><br/>
+                  <label for="breakfast1">Just Cafe Special Pasta:</label>
+                  <input type="checkbox" id="breakfast1" name="breakfast1"
+                  value="granola" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast1" value="0">
+                  <br/><br/>
+                  <label for="breakfast2">Veg veggie_burger:</label>
+                  <input type="checkbox" id="breakfast2" name="breakfast2"
+                  value="avacado_toast" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast2" value="0">
+                  <br/><br/>
+                  <label for="breakfast3">Garlic Bread/Cheese:</label>
+                  <input type="checkbox" id="breakfast3" name="breakfast3"
+                  value="muffin" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast3" value="0">
+                  <br/><br/>
+                  <label for="breakfast4">Veg Sandwich(Plain/Grilled):</label>
+                  <input type="checkbox" id="breakfast4" name="breakfast4"
+                  value="bagel" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast4" value="0">
+                  <br/><br/>
+                  <label for="breakfast5">Maggie:</label>
+                  <input type="checkbox" id="breakfast5" name="breakfast5"
+                  value="scone" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast5" value="0">
+                  <br/><br/>
+                  <label for="breakfast6">Veg Momos:</label>
+                  <input type="checkbox" id="breakfast6" name="breakfast6"
+                  value="smoothie_bowl" style="width:20px; height:20px;">
+                  <input type="number" id="breakfast6" value="0">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <!-- Lunch -->
+                  <strong>Lunch:</strong><br/>
+                  <label for="lunch1">Manchurian + Noodle/Fried Rice Combo</label>
+                  <input type="checkbox" id="lunch1" name="lunch1"
+                  value="lunch1" style="width:20px; height:20px;">
+                  <input type="number" id="lunch1" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch2">Chilli Paneer + Noodle/Fried Rice Combo:</label>
+                  <input type="checkbox" id="lunch2" name="lunch2"
+                  value="lunch2" style="width:20px; height:20px;">
+                  <input type="number" id="lunch2" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch3">Grilled Chicken:</label>
+                  <input type="checkbox" id="lunch3" name="lunch3"
+                  value="lunch3" style="width:20px; height:20px;">
+                  <input type="number" id="lunch3" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch4">Baked Pasta White Sauce:</label>
+                  <input type="checkbox" id="lunch4" name="lunch4"
+                  value="lunch4" style="width:20px; height:20px;">
+                  <input type="number" id="lunch4" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch5">Caesar Salad:</label>
+                  <input type="checkbox" id="lunch5" name="lunch5"
+                  value="lunch5" style="width:20px; height:20px;">
+                  <input type="number" id="lunch5" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch6">Just Cafe Special Burger:</label>
+                  <input type="checkbox" id="lunch6" name="lunch6"
+                  value="lunch6" style="width:20px; height:20px;">
+                  <input type="number" id="lunch6" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch7">Margherita Pizza:</label>
+                  <input type="checkbox" id="lunch7" name="lunch7"
+                  value="lunch7" style="width:20px; height:20px;">
+                  <input type="number" id="lunch7" value="0">
+                  <br/>
+                  <br/>
+                  <label for="lunch8">Paneer Tikka Sandwich:</label>
+                  <input type="checkbox" id="lunch8" name="lunch8"
+                  value="lunch8" style="width:20px; height:20px;">
+                  <input type="number" id="lunch8" value="0">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <!-- <div class="form-submit-button" > -->
+                  <input type="submit" value="Order" id="form-submit-button">
+                <!-- </div> -->
+             </form>
+           </div>
+      </div>
+
+<!-- line break -->
+					<hr hr size="6px" width="90%" color=#ED7117>
+
+<!-- footer -->
+				<div id='bottom'>
+					<div class= 'contact-info'>
+              +91-8997223312
+              &nbsp
+              justcafe@gmail.com
+              &nbsp
+              @Just_Cafe
+							<a style = 'text-align: right' href="order.html">Order</a>
+						</div>
+				</div>
+
+
+    <body>
+</html>
