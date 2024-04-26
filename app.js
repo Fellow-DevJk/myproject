@@ -4,17 +4,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const dotenv = require('dotenv');
-
-// Load environment variables
-dotenv.config();
 
 // Create Express app
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect("mongodb+srv://dhonithegoat956:8AsWXa2BytRdGACi@cluster0.dsuo43t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -96,6 +92,9 @@ app.get('/login', (req, res) => {
 });
 
 // Signup route
+app.get('/signup', (req, res) => {
+  res.render('signup');
+}); 
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body;
 
