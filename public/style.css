@@ -1,15 +1,5 @@
 body,html{font-size: 18px}
-/* heeader */
-/* heeader */
 header {
-	/* margin: 20px auto;
-	background-color: rgb(79, 195, 97);
-	height: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 101; */
 	background-color: #8a5829;
 		color: #fff;
 		padding: 20px;
@@ -323,3 +313,17 @@ nav ul li a {
 			color:#483c35;
 			font-weight: bold;
 		}
+
+				#orderButton {
+					color: #ED7117;
+					border: none;
+					background: #fff;
+					font-size: 24px;
+				}
+		
+				#orderButton:hover {
+					color: #fff;
+					border: none;
+					background: #ED7117;
+					font-size: 24px;
+				}

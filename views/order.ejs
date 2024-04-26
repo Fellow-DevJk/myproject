@@ -244,9 +244,12 @@
 <script>
   document.getElementById('orderForm').addEventListener('submit', function (event) {
     event.preventDefault();
+
+    // Collect form data
+    var formData = new FormData(this);
+
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/generateOrder');
-    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
       if (xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
@@ -256,9 +259,11 @@
         console.error('Failed to generate order:', xhr.responseText);
       }
     };
-    xhr.send();
+    xhr.send(formData);
   });
+
 </script>
+
 <!-- line break -->
 					<hr hr size="6px" width="90%" color=#ED7117>
 
