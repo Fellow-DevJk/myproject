@@ -63,18 +63,18 @@
 <!-- header section -->
         <div id='top'>
 					<div class='ss-text' >
-							<a id="title" href="index.html" style="text-decoration: none;">Just Cafe</a>
+							<a id="title" href="index" style="text-decoration: none;">Just Cafe</a>
 					</div>
-						<a href="index.html">Home</a>
-            <a href="menu.html">Menu</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="about.html">About Us</a>
+						<a href="index">Home</a>
+            <a href="menu">Menu</a>
+            <a href="contact">Contact Us</a>
+            <a href="about">About Us</a>
 						<a style="
 						background-color: rgba(255, 255, 255, 0.5);
 					  text-align: center;
 					  text-decoration: none;
 					  display: inline-block;
-						"href="order.html">Order</a>
+						"href="order">Order</a>
         </div>
 
 
@@ -84,7 +84,7 @@
 
       <div id='about-us' >
         <div class="order-form" >
-              <form id="orderForm" action="/generateOrder" method="POST">
+              <form id="orderForm" action="/Order" method="POST">
                   <!-- Information -->
                   <strong>Information:</strong><br/><br/>
                   <label for="name">Name for the order:</label>
@@ -231,7 +231,7 @@
                   <br/>
                   <br/>
                   <!-- <div class="form-submit-button" > -->
-                  <input type="submit" value="Order">
+                  <input type="submit" id="orderButton" value="Order">
                 <!-- </div> -->
              </form>
            </div>

@@ -69,6 +69,7 @@ app.get('/menu', (req, res) => {
 });
 
 // Order route
+// Order route
 app.get('/order', (req, res) => {
   res.render('order');
 });
@@ -77,9 +78,42 @@ app.post('/order', (req, res) => {
     // Generate a random orderId
     const orderId = Math.floor(100000 + Math.random() * 900000);
 
-    // Send a response indicating that the order is on the way
-    res.send(`Your order (Order ID: ${orderId}) is on the way!`);
+    // Retrieve order details from the request body
+    const { name, email, phone, address } = req.body;
+
+    // Create a dynamic HTML page to display the order details
+    const orderDetailsPage = `
+        <html>
+        <head>
+            <title>Order Details</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                }
+                h1 {
+                    color: #333;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Order Confirmation</h1>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Order ID:</strong> ${orderId}</p>
+        </body>
+        </html>
+    `;
+
+    // Send the dynamically generated HTML page as the response
+    res.send(orderDetailsPage);
 });
+
 
 // About route
 app.get('/about', (req, res) => {
