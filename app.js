@@ -78,7 +78,7 @@ app.post('/order', (req, res) => {
     const orderId = Math.floor(100000 + Math.random() * 900000);
 
     // Retrieve order details from the request body
-    const { name, email, phone, address } = req.body;
+    const { name, phone, address } = req.body;
 
     // Create a dynamic HTML page to display the order details
     const orderDetailsPage = `
@@ -101,7 +101,6 @@ app.post('/order', (req, res) => {
         <body>
             <h1>Order Confirmation</h1>
             <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Address:</strong> ${address}</p>
             <p><strong>Order ID:</strong> ${orderId}</p>
