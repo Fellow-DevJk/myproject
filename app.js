@@ -1,19 +1,26 @@
+// Import required modules
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const dotenv = require('dotenv');
 
+// Load environment variables
+dotenv.config();
+
+// Create Express app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://dhonithegoat956:Mj0x7OIfCFp9iqiN@@cluster0.dsuo43t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
-  console.log('Connected to MongoDB Atlas');
+  console.log('Connected to MongoDB');
 }).catch((err) => {
-  console.error('Error connecting to MongoDB Atlas:', err.message);
+  console.error('Error connecting to MongoDB:', err.message);
 });
 
 // Set views directory and template engine
@@ -25,87 +32,114 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'your_secret_key', // Change this to a secure key
+    resave: false,
+    saveUninitialized: true
+}));
 
 // Define Mongoose schema and model
-const rsDetailsSchema = new mongoose.Schema({
-  fullname: String,
-  email: String,
+const User = mongoose.model('User', {
+  username: String,
   password: String
 });
 
-const RsDetails = mongoose.model('RsDetails', rsDetailsSchema);
-
 // Define routes to render EJS templates
+
+// Home route
 app.get('/', (req, res) => {
-  res.render('index');
+  // Check if the user is logged in
+  if (req.session.loggedIn) {
+    // User is logged in, render index template
+    res.render('index', { loggedIn: true });
+  } else {
+    // User is not logged in, redirect to login page
+    res.redirect('/login');
+  }
 });
 
+// Contact route
 app.get('/contact', (req, res) => {
   res.render('contact');
 });
 
-app.get('/menu', (req, res) => {
-  res.render('listing');
-});
-
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
-app.get('/signup', (req, res) => {
-  res.render('signup');
-});
-
-app.get('/about', (req, res) => {
-  res.render('about');
-});
-
+// Menu route
 app.get('/menu', (req, res) => {
   res.render('menu');
 });
 
-if (!user) {
-    return res.redirect('/login');
-  }
+// Order route
+app.get('/order', (req, res) => {
+  res.render('order');
+});
+
+app.post('/order', (req, res) => {
+    // Generate a random orderId
+    const orderId = Math.floor(100000 + Math.random() * 900000);
+
+    // Send a response indicating that the order is on the way
+    res.send(`Your order (Order ID: ${orderId}) is on the way!`);
+});
+
+// About route
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+// Login route
+app.get('/login', (req, res) => {
+  res.render('login');
+});
 
 // Signup route
 app.post('/signup', async (req, res) => {
-  const { fullname, email, password, confirm_password } = req.body;
-
-  if (password !== confirm_password) {
-    return res.status(400).send('Passwords do not match');
-  }
+  const { username, password } = req.body;
 
   try {
-    const newUser = new RsDetails({ fullname, email, password });
+    const existingUser = await User.findOne({ username });
+
+    if (existingUser) {
+      return res.status(400).send('Username already exists');
+    }
+
+    const newUser = new User({ username, password });
     await newUser.save();
-    res.redirect('/Login');
+    res.redirect('/login');
   } catch (err) {
     console.error('Error saving user:', err.message);
-    res.redirect('/signup');
+    res.status(500).send('Internal Server Error');
   }
 });
 
 // Login route
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    const user = await RsDetails.findOne({ email });
+    const user = await User.findOne({ username });
 
     if (!user || user.password !== password) {
-      return res.status(400).send('Invalid email or password');
+      return res.status(400).send('Invalid username or password');
     }
 
-    res.redirect('/Listing');
+    // Set session variable to indicate user is logged in
+    req.session.loggedIn = true;
+    res.redirect('/');
   } catch (err) {
     console.error('Error finding user:', err.message);
-    res.redirect('/Login');
+    res.status(500).send('Internal Server Error');
   }
 });
 
-// Add additional routes for other pages in your assignment
+// Logout route
+app.get('/logout', (req, res) => {
+  // Destroy session and redirect to login page
+  req.session.destroy();
+  res.redirect('/login');
+});
 
+// Start server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
