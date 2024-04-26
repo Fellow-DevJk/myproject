@@ -241,7 +241,24 @@
         <p>Your order is on the way!</p>
         <p>Order ID: <span id="orderId"></span></p>
       </div>
-
+<script>
+  document.getElementById('orderForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/generateOrder');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        document.getElementById('orderId').textContent = response.orderId;
+        document.getElementById('orderMessage').style.display = 'block';
+      } else {
+        console.error('Failed to generate order:', xhr.responseText);
+      }
+    };
+    xhr.send();
+  });
+</script>
 <!-- line break -->
 					<hr hr size="6px" width="90%" color=#ED7117>
 
@@ -253,27 +270,8 @@
               justcafe@gmail.com
               &nbsp
               @Just_Cafe
-							<a style = 'text-align: right' href="order.html">Order</a>
+							<a style = 'text-align: right' href="order">Order</a>
 						</div>
 				</div>
-
-    <script>
-      document.getElementById('orderForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/generateOrder');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onload = function () {
-          if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            document.getElementById('orderId').textContent = response.orderId;
-            document.getElementById('orderMessage').style.display = 'block';
-          } else {
-            console.error('Failed to generate order:', xhr.responseText);
-          }
-        };
-        xhr.send();
-      });
-    </script>
     <body>
 </html>
