@@ -63,7 +63,10 @@ app.get('/', (req, res) => {
 app.get('/contact', (req, res) => {
   res.render('contact');
 });
-
+app.post('/send-email', (req, res) => {
+    // Do nothing, just send back a success response
+    res.sendStatus(200);
+});
 // Menu route
 app.get('/menu', (req, res) => {
   res.render('menu');
