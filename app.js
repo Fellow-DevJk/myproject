@@ -4,11 +4,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-// Create Express app
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Connect to MongoDB
 mongoose.connect('mongodb+srv://dhonithegoat956:OzRr1HJkoNBwR5Od@cluster0.a6ahffu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -18,69 +16,51 @@ mongoose.connect('mongodb+srv://dhonithegoat956:OzRr1HJkoNBwR5Od@cluster0.a6ahff
   console.error('Error connecting to MongoDB:', err.message);
 });
 
-// Set views directory and template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Set up middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'your_secret_key', // Change this to a secure key
+    secret: 'your_secret_key',
     resave: false,
     saveUninitialized: true
 }));
 
-// Define Mongoose schema and model
 const User = mongoose.model('User', {
   username: String,
   password: String
 });
 
-// Define routes to render EJS templates
-
-// Home route
 app.get('/', (req, res) => {
-  // Check if the user is logged in
   if (req.session.loggedIn) {
-    // User is logged in, render index template
     res.render('index', { loggedIn: true });
   } else {
-    // User is not logged in, redirect to login page
     res.redirect('/login');
   }
 });
 
-// Contact route
 app.get('/contact', (req, res) => {
   res.render('contact');
 });
+
 app.post('/send-email', (req, res) => {
-    // Do nothing, just send back a success response
     res.sendStatus(200);
 });
-// Menu route
+
 app.get('/menu', (req, res) => {
   res.render('menu');
 });
 
-// Order route
-// Order route
 app.get('/order', (req, res) => {
   res.render('order');
 });
 
 app.post('/order', (req, res) => {
-    // Generate a random orderId
     const orderId = Math.floor(100000 + Math.random() * 900000);
-
-    // Retrieve order details from the request body
     const { name, phone, address } = req.body;
-
-    // Create a dynamic HTML page to display the order details
     const orderDetailsPage = `
         <html>
         <head>
@@ -107,23 +87,17 @@ app.post('/order', (req, res) => {
         </body>
         </html>
     `;
-
-    // Send the dynamically generated HTML page as the response
     res.send(orderDetailsPage);
 });
 
-
-// About route
 app.get('/about', (req, res) => {
   res.render('about');
 });
 
-// Login route
 app.get('/login', (req, res) => {
   res.render('login');
 });
 
-// Signup route
 app.get('/signup', (req, res) => {
   res.render('signup');
 }); 
@@ -146,7 +120,6 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-// Login route
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -156,8 +129,6 @@ app.post('/login', async (req, res) => {
     if (!user || user.password !== password) {
       return res.status(400).send('Invalid username or password');
     }
-
-    // Set session variable to indicate user is logged in
     req.session.loggedIn = true;
     res.redirect('/');
   } catch (err) {
@@ -166,14 +137,11 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Logout route
 app.get('/logout', (req, res) => {
-  // Destroy session and redirect to login page
   req.session.destroy();
   res.redirect('/login');
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

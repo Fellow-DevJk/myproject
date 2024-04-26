@@ -170,9 +170,9 @@
   </div>
 </div>
 <script>
-  // Add JavaScript to handle form submission and display confirmation message
+  
   document.getElementById("emailForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
     var formData = new FormData(this);
     fetch("/send-email", {
       method: "POST",
@@ -191,10 +191,9 @@
       });
   });
 </script>
-<!-- line break -->
+
 					<hr hr size="6px" width="90%" color=#ED7117>
 
-<!-- footer -->
 				<div id='bottom'>
 					<div class= 'contact-info'>
               +91-8997223312
