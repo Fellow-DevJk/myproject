@@ -7,7 +7,7 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb+srv://dhonithegoat956:OzRr1HJkoNBwR5Od@cluster0.a6ahffu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{
+mongoose.connect('mongodb+srv://dhonithegoat956:vFZs68hJ9m4uNxBM@cluster0.a6ahffu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
