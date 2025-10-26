@@ -1,10 +1,10 @@
 ## Licensing and Terms of Use 📜
 
-This project leverages several open-source libraries and pre-trained models. Adherence to their respective licenses is crucial.
+This project leverages several open-source libraries and pre-trained models. Adherence to their respective licenses is crucial. Copies of the licenses for the primary third-party dependencies are included in the `LICENSES/` directory of this repository.
 
 **1. Core Python Libraries:**
 
-The core Python libraries used in this project (including PyTorch, torchvision, scikit-learn, Pandas, NumPy, FastAPI, Uvicorn, PyYAML, Pydantic, FAISS-CPU, OpenCV-Python-Headless, ONNX Runtime) are generally licensed under permissive open-source licenses such as **MIT** or **BSD-3-Clause**. These licenses typically allow for both academic and commercial use. Specific license details can be found in the respective project repositories (links available via PyPI or standard documentation).
+The core Python libraries used (including PyTorch, torchvision, scikit-learn, Pandas, NumPy, FastAPI, Uvicorn, PyYAML, Pydantic, FAISS-CPU, OpenCV-Python-Headless, ONNX Runtime) are generally licensed under permissive open-source licenses such as **MIT** or **BSD-3-Clause**, which typically allow for both academic and commercial use. Please refer to the files within the `LICENSES/` directory for the full text and copyright notices.
 
 **2. InsightFace Components:**
 
